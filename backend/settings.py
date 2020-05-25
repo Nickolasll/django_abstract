@@ -13,21 +13,14 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-import sys
-
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-# Include BOOTSTRAP4_FOLDER in path
-BOOTSTRAP4_FOLDER = os.path.abspath(os.path.join(BASE_DIR, "..", "bootstrap4"))
-if BOOTSTRAP4_FOLDER not in sys.path:
-    sys.path.insert(0, BOOTSTRAP4_FOLDER)
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '0drum6-4*k&s#-u-$)ae4d3#--=43wj6pt&9-a*$v)=7=4al($'
+SECRET_KEY = 'v+*n&h68t*$jfg42zp$#suf5(=h6+kx@4$qhhr7fm+nm7ljcf4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -44,8 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bootstrap4',
-    'app',
+    'frontend',
 ]
 
 MIDDLEWARE = [
@@ -127,11 +119,3 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-
-# Settings for django-bootstrap4
-BOOTSTRAP4 = {
-    "error_css_class": "bootstrap4-error",
-    "required_css_class": "bootstrap4-required",
-    "javascript_in_head": True,
-    "include_jquery": True,
-}
