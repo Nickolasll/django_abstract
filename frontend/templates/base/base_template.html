@@ -1,12 +1,15 @@
-{% include 'base/bootstrap.html' %}
-{% include 'base/navbar.html' %}
+<!doctype html>
+<html lang="ru">
+    {% include 'base/bootstrap.html' %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 
-<section className="container-fluid h-auto" style="height:100%">
-    <div className="row justify-content-center">
-        <article className="d-flex flex-column justify-content-center align-items-center vh-100">
+    <div class="container-fluid d-flex flex-column">
+        {% include 'base/navbar.html' %}
+        <div class="row d-flex flex-column justify-content-center w-100">
             {% block 'body' %}
             {% endblock %}
-        </article>
+        </div>
+        {% include 'base/footer.html' %}
     </div>
-</section>
-{% include 'base/footer.html' %}
+</html>
