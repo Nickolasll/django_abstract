@@ -4,9 +4,12 @@
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 
+    <title>{% block title %}(no title){% endblock %}</title>
+    <link rel="shortcut icon" type="image/x-icon" href={% static "favicon.ico" %}/>
+
     <div class="container-fluid d-flex flex-column">
         {% include 'base/navbar.html' %}
-        <div class="row d-flex flex-column justify-content-center w-100">
+        <div class="col d-flex flex-column justify-content-center w-100">
             {% block 'body' %}
             {% endblock %}
         </div>
