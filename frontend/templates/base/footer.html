@@ -1,5 +1,17 @@
+{% load static %}
+<script src={% static 'svginject.js' %}></script>
 <footer id="footer" class="py-4 bg-dark text-white-50">
-    <div class="container text-center">
-        <small>Copyright &copy; Your Website</small>
+    <div class="row" style="width: 100%">
+        <div class="col" style="max-width: 25%; padding-left: 100px">
+            <div class="row-auto d-flex justify-content-start align-items-center">
+            <img style="width: 30px; margin: 5px; color: red" src={% static "bootstrap_icons/envelope.svg" %}>NickolasII@yandex.ru</div>
+            <div class="row-auto d-flex justify-content-start align-items-center">
+                <img style="width: 30px; margin: 5px" src={% static "bootstrap_icons/phone.svg" %}>+7 (962) 198 70 01</div>
+            <div class="row-auto d-flex justify-content-start align-items-center">
+                <img style="width: 30px; margin: 5px" src={% static "bootstrap_icons/telegram.svg" %}>@NickolasII</div></div>
+        <div class="col d-flex justify-content-center align-items-center">
+            <small>Copyright 2020 &copy; Стартапик "Абстракто"</small>
+        </div>
+        <div class="col" style="max-width: 25%"></div>
     </div>
 </footer>

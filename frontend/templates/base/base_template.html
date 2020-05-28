@@ -1,18 +1,18 @@
 <!doctype html>
 <html lang="ru">
-    {% include 'base/bootstrap.html' %}
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+{% include 'base/bootstrap.html' %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 
-    <title>{% block title %}(no title){% endblock %}</title>
-    <link rel="shortcut icon" type="image/x-icon" href={% static "favicon.ico" %}/>
+<title>{% block title %}(no title){% endblock %}</title>
+<link rel="shortcut icon" type="image/x-icon" href={% static "favicon.ico" %}/>
 
-    <div class="container-fluid d-flex flex-column">
-        {% include 'base/navbar.html' %}
-        <div class="col d-flex flex-column justify-content-center w-100">
-            {% block 'body' %}
-            {% endblock %}
-        </div>
-        {% include 'base/footer.html' %}
+<div class="container-fluid d-flex flex-column">
+    {% include 'base/navbar.html' %}
+    <div class="col-auto d-flex flex-column justify-content-center w-100">
+        {% block 'body' %}
+        {% endblock %}
     </div>
+    {% include 'base/footer.html' %}
+</div>
 </html>
