@@ -1,20 +1,19 @@
 {% extends 'base/base_template.html' %}
 {% block title %}О проекте{% endblock %}
 {% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 {% block 'body' %}
     <div class="container-fluid" style="padding: 20px; margin-bottom: 32px">
         <h1 class="display-4">О проекте</h1>
         <p class="lead text-justify">{{ about_project }}</p>
         <hr class="my-4">
-        <h4>
-            <span class="badge badge-pill badge-info">Python</span>
-            <span class="badge badge-pill badge-info">Django</span>
-            <span class="badge badge-pill badge-info">Bootstrap 4</span>
-            <span class="badge badge-pill badge-info">MVC</span>
-            <span class="badge badge-pill badge-info">jQuery</span>
-            <span class="badge badge-pill badge-info">SCSS</span>
+        <h4 class="text-center">
+            {% for item in technologies %}
+                <span class="badge badge-pill badge-info">{{ item }}</span>
+            {% endfor %}
         </h4>
     </div>
+
     <div class="jumbotron" style="padding: 0px">
         <div class="container-fluid" style="padding: 20px">
             <h1 class="display-4">Об авторе</h1>
@@ -24,18 +23,12 @@
             </div>
             <hr class="my-4">
             <div class="row">
-                <div class="col d-flex justify-content-center align-items-center">
-                    <img style="width: 50px; margin: 5px" src={% static "bootstrap_icons/envelope.svg" %}>
-                    <div class="lead">NickolasII@yandex.ru</div>
-                </div>
-                <div class="col d-flex justify-content-center align-items-center">
-                    <img style="width: 50px; margin: 5px" src={% static "bootstrap_icons/phone.svg" %}>
-                    <div class="lead">+7 (962) 198 70 01</div>
-                </div>
-                <div class="col d-flex justify-content-center align-items-center">
-                    <img style="width: 50px; margin: 5px" src={% static "bootstrap_icons/telegram.svg" %}>
-                    <div class="lead">@NickolasII</div>
-                </div>
+                {% for contact in contacts %}
+                    <div class="col d-flex justify-content-center align-items-center">
+                        <img style="width: 50px; margin: 5px" src={% static contact.0  %}>
+                        <div class="lead">{{ contact.1 }}</div>
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </div>
@@ -74,13 +67,16 @@
                 </tr>
                 </thead>
                 <tbody>
-                {#                <tr>#}
-                {#                    <td>Weather API </td>#}
-                {#                    <td>test</td>#}
-                {#                    <td class="text-center"><a href="https://openweathermap.org/api" class="badge badge-info">ссылка</a></td>#}
-                {#                </tr>#}
+                    {% for item in references %}
+                        <tr>
+                            <td>{{ item.0 }}</td>
+                            <td>{{ item.1 }}</td>
+                            <td class="text-center"><a class="badge badge-info" href={{ item.2 }}>ссылка</a></td>
+                        </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
     </div>
+
 {% endblock %}
