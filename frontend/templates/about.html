@@ -4,7 +4,7 @@
 {% block 'body' %}
     <div class="container-fluid" style="padding: 20px; margin-bottom: 32px">
         <h1 class="display-4">О проекте</h1>
-        <p class="lead">{{ about_project }}</p>
+        <p class="lead text-justify">{{ about_project }}</p>
         <hr class="my-4">
         <h4>
             <span class="badge badge-pill badge-info">Python</span>
@@ -20,7 +20,7 @@
             <h1 class="display-4">Об авторе</h1>
             <div class="container-fluid d-flex flex-row" style="height: auto">
                 <img src={% static "author.jpg" %} class="rounded-circle" style="width: 250px; height: 250px; margin-right: 30px">
-                <p class="lead">{{ about_author }}</p>
+                <p class="lead text-justify">{{ about_author }}</p>
             </div>
             <hr class="my-4">
             <div class="row">
