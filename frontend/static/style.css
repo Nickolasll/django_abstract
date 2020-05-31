@@ -9,40 +9,105 @@ html {
 .display-4 {
     font-size: 3.5rem;
 }
+.lead {
+    font-size: 1.5rem;
+}
 
 @media (min-width: 300px) {
   html {
-    font-size: 1.0rem;
+      font-size: 1.0rem;
   }
   .display-4 {
       font-size: 2.0rem;
   }
+  .lead {
+      font-size: 1.0rem;
+  }
 }
 
-@media (min-width: 500px) {
+@media (min-width: 540px) {
   html {
-    font-size: 1.1rem;
+      font-size: 1.1rem;
   }
   .display-4 {
       font-size: 2.5rem;
   }
+  .lead {
+      font-size: 1.1rem;
+  }
 }
 
-@media (min-width: 991px) {
+@media (min-width: 960px) {
   html {
     font-size: 1.2rem;
   }
   .display-4{
       font-size: 3rem;
   }
-
+  .lead {
+      font-size: 1.3rem;
+  }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1140px) {
   html {
-    font-size: 1.2rem;
+      font-size: 1.2rem;
   }
-    .display-4 {
+  .display-4 {
       font-size: 3.5rem;
   }
+  .lead {
+      font-size: 1.5rem;
+  }
+}
+
+
+.bd-callout {
+    padding: 1.25rem;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid #eee;
+    border-left-width: .25rem;
+    border-radius: .25rem
+}
+
+.bd-callout h4 {
+    margin-top: 0;
+    margin-bottom: .25rem
+}
+
+.bd-callout p:last-child {
+    margin-bottom: 0
+}
+
+.bd-callout code {
+    border-radius: .25rem
+}
+
+.bd-callout+.bd-callout {
+    margin-top: -.25rem
+}
+
+.bd-callout-info {
+    border-left-color: #5bc0de
+}
+
+.bd-callout-info h4 {
+    color: #5bc0de
+}
+
+.bd-callout-warning {
+    border-left-color: #f0ad4e
+}
+
+.bd-callout-warning h4 {
+    color: #f0ad4e
+}
+
+.bd-callout-danger {
+    border-left-color: #d9534f
+}
+
+.bd-callout-danger h4 {
+    color: #d9534f
 }

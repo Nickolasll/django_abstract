@@ -7,9 +7,9 @@
 <title>{% block title %}(no title){% endblock %}</title>
 <link rel="shortcut icon" type="image/x-icon" href={% static "favicon.ico" %}/>
 
-<div class="container-fluid d-flex flex-column">
+<div class="container-fluid d-flex flex-column" style="height: auto; min-height: 100%">
     {% include 'base/navbar.html' %}
-    <div class="col d-flex flex-column justify-content-center w-100">
+    <div class="col px-md-5 d-flex flex-column justify-content-center w-100">
         {% block 'body' %}
         {% endblock %}
     </div>

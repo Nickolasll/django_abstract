@@ -1,36 +1,52 @@
 {% extends 'base/base_template.html' %}
 {% block title %}Главная страница{% endblock %}
+{% load static %}
 {% block 'body' %}
-<div class="form-group align-self-center w-100">
-    <label for="formGroupExampleInput">Example label</label>
-    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
-</div>
-<div class="form-group align-self-center w-100">
-    <label for="formGroupExampleInput2">Another label</label>
-    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
-</div>
-<div class="alert alert-primary align-self-center w-100" role="alert">
-    A simple primary alert—check it out!
-</div>
-<div class="alert alert-secondary align-self-center w-100" role="alert">
-    A simple secondary alert—check it out!
-</div>
-<div class="alert alert-success align-self-center w-100" role="alert">
-    A simple success alert—check it out!
-</div>
-<div class="alert alert-danger align-self-center w-100" role="alert">
-    A simple danger alert—check it out!
-</div>
-<div class="alert alert-warning align-self-center w-100" role="alert">
-    A simple warning alert—check it out!
-</div>
-<div class="alert alert-info align-self-center w-100" role="alert">
-    A simple info alert—check it out!
-</div>
-<div class="alert alert-light align-self-center w-100" role="alert">
-    A simple light alert—check it out!
-</div>
-<div class="alert alert-dark align-self-center w-100" role="alert">
-    A simple dark alert—check it out!
-</div>
+    <div class="container-fluid" style="padding: 20px;">
+        <h1 class="display-4">Заголовок</h1>
+        <p class="lead text-justify">Описалово</p>
+    </div>
+    <div id="carouselExampleIndicators" class="carousel slide justify-self-center align-self-center pb-2"
+         data-ride="carousel" style="height: 75%; width: 75%">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active bg-dark"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1" class="bg-dark"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2" class="bg-dark"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="d-block w-100" alt="First slide" src={% static 'caroucel/you_are_here.jpg' %}>
+                <div class="carousel-caption d-none d-md-block">
+                    <h5 class="text-dark">text</h5>
+                    <p class="text-dark">label</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" alt="Second slide" src={% static 'caroucel/you_are_here.jpg' %}>
+                <div class="carousel-caption d-none d-md-block">
+                    <h5 class="text-dark">text</h5>
+                    <p class="text-dark">label</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" alt="Third slide" src={% static 'caroucel/you_are_here.jpg' %}>
+                <div class="carousel-caption d-none d-md-block">
+                    <h5 class="text-dark">text</h5>
+                    <p class="text-dark">label</p>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Предыдущий</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Следующий</span>
+        </a>
+    </div>
+
+    <div class="bd-callout bd-callout-info">
+        <div class="lead">Информация</div>
+    </div>
 {% endblock %}
