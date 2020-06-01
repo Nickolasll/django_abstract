@@ -6,21 +6,22 @@
     <div class="container-fluid" style="padding: 20px; margin-bottom: 32px">
         <h1 class="display-4">{{ about.project.header }}</h1>
         <p class="lead text-justify">{{ about.project.info }}</p>
+        <p class="lead text-justify">{{ about.project.additional_info }}</p>
         <hr class="my-4">
         <h4 class="text-center">
             {% for technology in about.project.technologies %}
-                <span class="badge badge-pill badge-secondary">{{ technology }}</span>
+                <span class="badge badge-pill badge-info">{{ technology }}</span>
             {% endfor %}
         </h4>
     </div>
 
+    <h1 class="display-4">{{ about.author.header }}</h1>
     <div class="jumbotron" style="padding: 0px">
         <div class="container-fluid" style="padding: 20px">
-            <h1 class="display-4">{{ about.author.header }}</h1>
             <div class="row d-flex flex-column d-sm-flex flex-sm-row">
                 <div class="col-auto justify-content-center align-items-center">
-                    <img class="rounded-circle justify-self-center align-self-center"
-                         style="width: 250px; height: 250px;" src={% static about.author.photo %}>
+                    <img class="rounded-circle justify-self-center align-self-center shadow img-fluid"
+                         style="width: 350px;" src={% static about.author.photo %}>
                 </div>
                 <div class="col lead text-justify">{{ about.author.info }}</div>
             </div>

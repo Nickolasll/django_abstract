@@ -5,6 +5,7 @@ from django.views.generic import TemplateView
 
 from backend.settings import BASE_DIR
 from frontend.domain.about.about import About
+from frontend.domain.home.home import Home
 
 
 class AbstractView(TemplateView, metaclass=ABCMeta):
@@ -21,6 +22,12 @@ class AbstractView(TemplateView, metaclass=ABCMeta):
 class HomeView(AbstractView):
     template_name = 'home.html'
     nav = 'home'
+    home = Home()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update({'home': self.home})
+        return context
 
 
 class AboutView(AbstractView):
@@ -30,9 +37,5 @@ class AboutView(AbstractView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context.update(
-            {
-                'about': self.about,
-            }
-        )
+        context.update({'about': self.about})
         return context
