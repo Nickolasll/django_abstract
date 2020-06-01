@@ -4,7 +4,7 @@
 {% block 'body' %}
     <div class="container-fluid" style="padding: 20px;">
         <h1 class="display-4">{{ home.header }}</h1>
-        <p class="lead text-justify">{{ home.description }}</p>
+        <div class="lead text-justify">{{ home.description }}</div>
     </div>
     <div id="carouselExampleIndicators" class="carousel slide justify-self-center align-self-center pb-2 w-100 px-sm-5"
          data-ride="carousel">
@@ -33,9 +33,27 @@
         </a>
     </div>
     <div class="bd-callout bd-callout-info">
-        <h4>{{ home.info_header }}</h4>
-        {% for info in home.infos %}
-            <div class="lead">{{ info }}</div>
-        {% endfor %}
+        <h4>{{ home.faq_header }}</h4>
+        <h6>{{ home.faq_description }}</h6>
+        <div class="accordion" id="accordion">
+            {% for faq in home.faqs %}
+                <div class="card">
+                    <div class="card-header p-0 shadow" id="accordion-heading-{{ forloop.counter }}">
+                        <button class="btn w-100" type="button" data-toggle="collapse"
+                                data-target="#accordion-content-{{ forloop.counter }}" aria-expanded="false"
+                                aria-controls="accordion-content-{{ forloop.counter }}"
+                                style="box-shadow: none !important; outline: 0px !important;">
+                            <h6 class="text-left text-info m-0 p-1">{{ faq.question }}</h6>
+                        </button>
+                    </div>
+                    <div class="collapse" id="accordion-content-{{ forloop.counter }}"
+                         aria-labelledby="accordion-heading-{{ forloop.counter }}" data-parent="#accordion">
+                        <div class="card-body">
+                            <p>{{ faq.answer }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}
