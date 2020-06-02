@@ -1,0 +1,18 @@
+{% extends 'base/base_template.html' %}
+{% block title %}Шутка!{% endblock %}
+{% load static %}
+
+{% block 'body' %}
+    <script type="text/javascript" src={% static "joke.js" %}></script>
+    <ul class="list-group list-group-flush py-4" id="joke-container">
+    {% for joke in jokes %}
+        <div class="card border-info mb-4" joke-id={{ joke.id_ }}>
+            <div class="card-body m-0">{{ joke.text|linebreaksbr }}</div>
+        </div>
+    {% endfor %}
+    </ul>
+    {% csrf_token %}
+    <button type="button" class="btn btn-info mb-4" id="addJokeButton"
+            style="box-shadow: none !important; outline: 0px !important;">Добавить</button>
+    <i class="icon-remove-sign"></i>
+{% endblock %}

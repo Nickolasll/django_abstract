@@ -1,14 +1,13 @@
 from abc import ABCMeta
-from pathlib import Path
 
+from django.http import HttpResponse
 from django.views.generic import TemplateView
-
-from backend.settings import BASE_DIR
 from frontend.domain.about.about import About
 from frontend.domain.home.home import Home
+from frontend.domain.joke.factory import JokeFactory
 
 
-class AbstractView(TemplateView, metaclass=ABCMeta):
+class AbstractTemplateView(TemplateView, metaclass=ABCMeta):
     nav = None
 
     def get_context_data(self, **kwargs):
@@ -19,7 +18,7 @@ class AbstractView(TemplateView, metaclass=ABCMeta):
         return context
 
 
-class HomeView(AbstractView):
+class HomeView(AbstractTemplateView):
     template_name = 'home.html'
     nav = 'home'
     home = Home()
@@ -30,7 +29,7 @@ class HomeView(AbstractView):
         return context
 
 
-class AboutView(AbstractView):
+class AboutView(AbstractTemplateView):
     template_name = 'about.html'
     nav = 'about'
     about = About()
@@ -39,3 +38,23 @@ class AboutView(AbstractView):
         context = super().get_context_data(**kwargs)
         context.update({'about': self.about})
         return context
+
+
+class JokeView(AbstractTemplateView):
+    template_name = 'joke.html'
+    nav = 'joke'
+    jokes = []
+
+    def get_context_data(self, **kwargs):
+        if not self.jokes:
+            self.jokes.append(JokeFactory.get_online_joke())
+        context = super().get_context_data(**kwargs)
+        context.update({'jokes': self.jokes})
+        return context
+
+    def post(self, request, *args, **kwargs):
+        import json
+        joke = JokeFactory.get_online_joke()
+        self.jokes.append(joke)
+        json_data = json.dumps(joke.serialize())
+        return HttpResponse(json_data, content_type='application/json')

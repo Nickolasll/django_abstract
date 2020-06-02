@@ -2,6 +2,7 @@ from pathlib import Path
 
 from backend.settings import BASE_DIR
 from frontend.domain.about.package import Package
+from frontend.domain.about.service import Service
 
 
 class Project:
@@ -15,11 +16,13 @@ class Project:
                       'Это скорее мой sandbox, в котором я в свободное время экспериментировал: имплементировал все ' \
                       'что хотел попробовать и все что было интересно. Почему именно "Абстракцио"? - не знаю, просто ' \
                       'захотелось.'
-    technologies = ['Python 3', 'Django 3', 'Bootstrap 4', 'MVC', 'jQuery']
+    technologies = ['Python 3', 'Django 3', 'Bootstrap 4', 'MVC', 'JavaScript', 'Ajax']
     requirements_header = 'Установленные пакеты Python 3.7'
     requirements = []
     services_header = 'Дополнительные сервисы'
-    services = []
+    services = [
+        Service(name='РжуНеМогу.RU', info='Отсюда я беру GET запросом случайные анекдоты', ref='http://rzhunemogu.ru/')
+    ]
 
     def __init__(self):
         req_path = Path(BASE_DIR, 'requirements.txt')
