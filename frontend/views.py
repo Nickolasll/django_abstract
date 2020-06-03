@@ -7,6 +7,8 @@ from frontend.domain.home.home import Home
 from frontend.domain.joke.factory import JokeFactory
 import json
 
+from frontend.domain.quote_book.quote_book import QuoteBook
+
 
 class AbstractTemplateView(TemplateView, metaclass=ABCMeta):
     nav = None
@@ -63,3 +65,27 @@ class JokeView(AbstractTemplateView):
         data = json.loads(request.body)
         self.jokes.remove(data['id_'])
         return HttpResponse('success', content_type='application/json')
+
+
+class QuoteView(AbstractTemplateView):
+    template_name = 'quote.html'
+    nav = 'quote'
+
+    def get_context_data(self, **kwargs):
+        quotes = []
+        for _ in range(3):
+            quotes.append(QuoteBook.get_quote())
+        context = super().get_context_data(**kwargs)
+        context.update({'quotes': quotes})
+        return context
+
+    # def post(self, request, *args, **kwargs):
+    #     joke = JokeFactory.get_online_joke()
+    #     self.jokes.append(joke)
+    #     json_data = json.dumps(joke.serialize())
+    #     return HttpResponse(json_data, content_type='application/json')
+    #
+    # def delete(self, request, *args, **kwargs):
+    #     data = json.loads(request.body)
+    #     self.jokes.remove(data['id_'])
+    #     return HttpResponse('success', content_type='application/json')

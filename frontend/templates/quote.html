@@ -1,0 +1,28 @@
+{% extends 'base/base_template.html' %}
+{% block title %}Цитата{% endblock %}
+{% load static %}
+
+{% block 'body' %}
+    <div class="card-group my-4">
+{#    <script type="text/javascript" src={% static "joke.js" %}></script>#}
+    {% for quote in quotes %}
+        <div class="col">
+
+    <div class="card shadow align-self-center h-100 mb-4" id="quote">
+        <img class="card-img-top" src={% static quote.picture %} style="max-width: 800px;">
+        <div class="card-body ml-auto" style="max-width: 800px; height: 100%">
+                <blockquote class="blockquote text-right">
+                    <p class="mb-0">{{ quote.quote }}</p>
+                    <footer class="blockquote-footer">{{ quote.profession }} {{ quote.name }} <cite title="Source Title">{{ quote.year }}</cite></footer>
+                </blockquote>
+        </div>
+    </div>
+        </div>
+    {% endfor %}
+
+    </div>
+{#    {% csrf_token %}#}
+    <button type="button" class="btn btn-info mb-4" id="refresh"
+            style="box-shadow: none !important; outline: 0px !important;">Другая подборка</button>
+    <i class="icon-remove-sign"></i>
+{% endblock %}
