@@ -5,6 +5,7 @@ from django.views.generic import TemplateView
 from frontend.domain.about.about import About
 from frontend.domain.home.home import Home
 from frontend.domain.joke.factory import JokeFactory
+import json
 
 
 class AbstractTemplateView(TemplateView, metaclass=ABCMeta):
@@ -53,8 +54,12 @@ class JokeView(AbstractTemplateView):
         return context
 
     def post(self, request, *args, **kwargs):
-        import json
         joke = JokeFactory.get_online_joke()
         self.jokes.append(joke)
         json_data = json.dumps(joke.serialize())
         return HttpResponse(json_data, content_type='application/json')
+
+    def delete(self, request, *args, **kwargs):
+        data = json.loads(request.body)
+        self.jokes.remove(data['id_'])
+        return HttpResponse('success', content_type='application/json')

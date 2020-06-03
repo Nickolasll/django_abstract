@@ -4,10 +4,15 @@
 
 {% block 'body' %}
     <script type="text/javascript" src={% static "joke.js" %}></script>
-    <ul class="list-group list-group-flush py-4" id="joke-container">
+    <ul class="list-group list-group-flush" id="joke-container">
     {% for joke in jokes %}
-        <div class="card border-info mb-4" joke-id={{ joke.id_ }}>
-            <div class="card-body m-0">{{ joke.text|linebreaksbr }}</div>
+        <div class="card border-info my-4" joke-id={{ joke.id_ }}>
+            <div class="card-body m-0">
+                <button type="button" class="close" aria-label="Close" style="box-shadow: none !important; outline: 0px !important;">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {{ joke.text|linebreaksbr }}
+            </div>
         </div>
     {% endfor %}
     </ul>

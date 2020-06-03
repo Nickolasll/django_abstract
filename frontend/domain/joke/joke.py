@@ -6,6 +6,8 @@ class Joke:
     def __eq__(self, other):
         if isinstance(other, Joke):
             return self.id_ == other.id_
+        elif isinstance(other, str):
+            return self.id_ == other
         else:
             return False
 
