@@ -70,22 +70,21 @@ class JokeView(AbstractTemplateView):
 class QuoteView(AbstractTemplateView):
     template_name = 'quote.html'
     nav = 'quote'
+    quotes = []
 
     def get_context_data(self, **kwargs):
-        quotes = []
-        for _ in range(3):
-            quotes.append(QuoteBook.get_quote())
+        if not self.quotes:
+            self.quotes.extend(QuoteBook().get_quotes())
         context = super().get_context_data(**kwargs)
-        context.update({'quotes': quotes})
+        context.update({'quotes': self.quotes})
         return context
 
-    # def post(self, request, *args, **kwargs):
-    #     joke = JokeFactory.get_online_joke()
-    #     self.jokes.append(joke)
-    #     json_data = json.dumps(joke.serialize())
-    #     return HttpResponse(json_data, content_type='application/json')
-    #
-    # def delete(self, request, *args, **kwargs):
-    #     data = json.loads(request.body)
-    #     self.jokes.remove(data['id_'])
-    #     return HttpResponse('success', content_type='application/json')
+    def post(self, request, *args, **kwargs):
+        quotes = QuoteBook().get_quotes()
+        self.quotes.clear()
+        self.quotes.extend(quotes)
+        response = {
+            'quotes': [quote.serialize() for quote in quotes]
+        }
+        json_data = json.dumps(response)
+        return HttpResponse(json_data, content_type='application/json')

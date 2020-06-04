@@ -9,4 +9,5 @@ urlpatterns = [
     url(r"joke", JokeView.as_view()),
     path(r"joke", JokeView.as_view(), name='add_joke'),
     url(r"quote", QuoteView.as_view()),
+    path(r"quote", QuoteView.as_view(), name='quote'),
 ]

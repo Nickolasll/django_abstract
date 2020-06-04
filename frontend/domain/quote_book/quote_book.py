@@ -6,6 +6,8 @@ import requests
 
 from backend.settings import BASE_DIR
 from frontend.domain.quote_book.qoute import Quote
+from faker import Faker
+from .meta import countries
 
 
 class QuoteBook:
@@ -14,29 +16,42 @@ class QuoteBook:
         'Да пошло оно все'
     ]
     names = [
-        'Джейсон Стетхем'
-    ]
-    countries = [
-        'Испанский'
-    ]
-    professions = [
-        'плотник'
+        'Джейсон Стетхем',
+        'Конфуций',
+        'Стив Джобс',
+        'Мухаммед Али',
+        'Элтон Джон',
+        'Том Круз',
+        'Брюс Ли',
+        'Чак Норрис',
+        'Евгений Петросян',
     ]
 
-    @classmethod
-    def get_quote(cls):
-        static_path = Path(BASE_DIR, 'frontend', 'static', 'quote_book')
-        picture = str(Path('quote_book', random.choice(os.listdir(static_path))))
-        name = random.choice(cls.names)
-        year = f"{random.randint(1000, 2020)} год"
-        country = random.choice(cls.countries)
-        profession = random.choice(cls.professions)
-        quote = random.choice(cls.error_quotes)
+    def __init__(self):
+        self.faker = Faker('ru_RU')
+        self.pictures = os.listdir(Path(BASE_DIR, 'frontend', 'static', 'quote_book'))
+        self.countries = countries
 
-        response = requests.get(cls.url)
-        if response.status_code != 200:
-            return Quote(picture=picture, quote=quote, name=name, year=year, country=country, profession=profession)
-        # stupid encoding and bad quoting, so we use trim
-        quote = response.content.decode(response.encoding)
-        quote = quote.replace('{"content":"', '').split('.')[0]
-        return Quote(picture=picture, quote=quote, name=name, year=year, country=country, profession=profession)
+    def get_quotes(self, count=3):
+        quotes = []
+        random.shuffle(self.pictures)
+        random.shuffle(self.names)
+        random.shuffle(self.countries)
+        error_quote = self.error_quotes[0]
+        for i in range(count):
+            picture = str(Path('quote_book', self.pictures[i]))
+            name = self.names[i]
+            profession = self.faker.job().lower()
+            country = self.countries[i]
+            year = f"{random.randint(1000, 2020)} год"
+            response = requests.get(self.url)
+            if response.status_code != 200:
+                q = Quote(picture=picture, quote=error_quote, name=name, year=year, country=country,
+                          profession=profession)
+            else:
+                # stupid encoding and bad quoting, so we use trim
+                quote = response.content.decode(response.encoding)
+                quote = quote.replace('{"content":"', '').split('.')[0]
+                q = Quote(picture=picture, quote=quote, name=name, year=year, country=country, profession=profession)
+            quotes.append(q)
+        return quotes
