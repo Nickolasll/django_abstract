@@ -8,6 +8,7 @@ from frontend.domain.joke.factory import JokeFactory
 import json
 
 from frontend.domain.quote_book.quote_book import QuoteBook
+from frontend.domain.weather.manager import Manager
 
 
 class AbstractTemplateView(TemplateView, metaclass=ABCMeta):
@@ -88,3 +89,14 @@ class QuoteView(AbstractTemplateView):
         }
         json_data = json.dumps(response)
         return HttpResponse(json_data, content_type='application/json')
+
+
+class WeatherView(AbstractTemplateView):
+    template_name = 'weather.html'
+    nav = 'weather'
+    manager = Manager()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update({'cities': self.manager.cities})
+        return context

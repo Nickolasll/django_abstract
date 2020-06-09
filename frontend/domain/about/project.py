@@ -23,7 +23,16 @@ class Project:
     requirements = []
     services_header = 'Дополнительные сервисы'
     services = [
-        Service(name='РжуНеМогу.RU', info='Отсюда я беру GET запросом случайные анекдоты', ref='http://rzhunemogu.ru/')
+        Service(
+            name='РжуНеМогу.RU',
+            info='Отсюда я беру GET запросом случайные анекдоты, цитаты и афоризмы',
+            ref='http://rzhunemogu.ru/'
+        ),
+        Service(
+            name='openweathermap.org',
+            info='Отсюда берется информация для виджета погоды',
+            ref='https://openweathermap.org/'
+        ),
     ]
 
     def __init__(self):
