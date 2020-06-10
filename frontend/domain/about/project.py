@@ -30,7 +30,7 @@ class Project:
         ),
         Service(
             name='openweathermap.org',
-            info='Отсюда берется информация для виджета погоды',
+            info='Отсюда берется информация для виджета погоды и иконочки',
             ref='https://openweathermap.org/'
         ),
     ]

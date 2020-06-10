@@ -4,10 +4,11 @@ from frontend.domain.weather.measure import Measure
 
 
 class ShortWeather:
-    def __init__(self, temp: str, icon: str, date: str):
+    def __init__(self, temp: str, icon: str, date: str, time: str):
         self.temp = Measure(temp, "°C")
-        self.icon = f"http://openweathermap.org/img/wn/{icon}@4x.png"
+        self.icon = f"http://openweathermap.org/img/wn/{icon}@2x.png"
         self.date = date
+        self.time = time
 
 
 class WeatherForecast:
@@ -24,8 +25,8 @@ class WeatherForecast:
         for i in range(0, 40, 8):
             temp = info['list'][i]['main']['temp']
             icon = info['list'][i]['weather'][0]['icon']
-            date = info['list'][i]['dt_txt']
-            self.forecast.append(ShortWeather(temp, icon, date))
+            date, time = info['list'][i]['dt_txt'].split(' ')
+            self.forecast.append(ShortWeather(temp, icon, date, time))
 
     def update(self):
         self.forecast.clear()
@@ -33,5 +34,5 @@ class WeatherForecast:
         for i in range(0, 40, 8):
             temp = info['list'][i]['main']['temp']
             icon = info['list'][i]['weather'][0]['icon']
-            date = info['list'][i]['dt_txt']
-            self.forecast.append(ShortWeather(temp, icon, date))
+            date, time = info['list'][i]['dt_txt'].split(' ')
+            self.forecast.append(ShortWeather(temp, icon, date, time))

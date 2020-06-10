@@ -100,3 +100,10 @@ class WeatherView(AbstractTemplateView):
         context = super().get_context_data(**kwargs)
         context.update({'cities': self.manager.cities})
         return context
+
+    def post(self, request, *args, **kwargs):
+        a = json.loads(request.body)
+        print(a)
+        response = {'result': True}
+        json_data = json.dumps(response)
+        return HttpResponse(json_data, content_type='application/json')

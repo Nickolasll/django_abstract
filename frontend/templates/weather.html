@@ -3,9 +3,19 @@
 {% load static %}
 
 {% block 'body' %}
+    <script type="text/javascript" src={% static "js/weather.js" %}></script>
+    {% csrf_token %}
     <ul class="list-group mx-auto">
+        <form id="add_weather">
+        <div class="input-group mt-3">
+            <input type="text" class="form-control" placeholder="Город" aria-label="Город" id="city_name">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">Добавить</button>
+            </div>
+        </div>
+        </form>
         {% for city in cities %}
-                <div class="card bg-light shadow my-3 mx-auto" data-city={{ city.name }}>
+                <div class="card bg-light shadow my-3">
                     <div class="card-body d-flex flex-column">
                         <div class="row d-flex m-2">
                             <div class="col">
@@ -25,7 +35,7 @@
                             </div>
                         </div>
                         <div class="row d-flex m-2 justify-content-around">
-                            <div class="col-auto">
+                            <div class="col">
                                 <div class="{% if city.current_weather.temp.value > 20 %}
                                 text-warning {% elif city.current_weather.temp.value < 0 %}
                                 text-info {% else %} text-success {% endif %}">
@@ -55,8 +65,8 @@
                                 {% for weather in city.weather_forecast.forecast %}
                                     <div class="col-auto border border-top-0">
                                         <div class="small text-muted">{{ weather.date }}</div>
-                                        <div class="small">
-                                            Температура {{ weather.temp.value }} {{ weather.temp.unit }}</div>
+                                        <div class="small text-muted">{{ weather.time }}</div>
+                                        <div class="small">{{ weather.temp.value }} {{ weather.temp.unit }}</div>
                                         <img src={{ weather.icon }}>
                                     </div>
                                 {% endfor %}
@@ -66,4 +76,5 @@
                 </div>
         {% endfor %}
     </ul>
+
 {% endblock %}

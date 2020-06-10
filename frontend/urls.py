@@ -11,4 +11,5 @@ urlpatterns = [
     url(r"quote", QuoteView.as_view()),
     path(r"quote", QuoteView.as_view(), name='quote'),
     url(r"weather", WeatherView.as_view()),
+    path(r"weather", WeatherView.as_view(), name='weather'),
 ]

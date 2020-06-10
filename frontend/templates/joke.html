@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block 'body' %}
-    <script type="text/javascript" src={% static "joke.js" %}></script>
+    <script type="text/javascript" src={% static "js/joke.js" %}></script>
     <ul class="list-group list-group-flush" id="joke-container">
     {% for joke in jokes %}
         <div class="card border-info my-4" joke-id={{ joke.id_ }}>
